@@ -1,3 +1,5 @@
+; José Viloria, el programa es una calculadora con suma, resta, multiplicación y división, C define la operación a hacer, indicada según el signo ( +, -, *, /)
+
 start:
     MOV A, 36
     MOV B, 4
