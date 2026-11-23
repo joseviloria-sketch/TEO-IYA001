@@ -1,8 +1,8 @@
 ; José Viloria, el programa es una calculadora con suma, resta, multiplicación y división, C define la operación a hacer, indicada según el signo ( +, -, *, /)
 
 start:
-    MOV A, 36
-    MOV B, 4
+    MOV A, 200
+    MOV B, 200
     MOV C, '+'
 
     CMP C, '+'
@@ -17,9 +17,12 @@ start:
 
 add:
     ADD A, B
+    JC error
     JMP print
 
 sub:
+    CMP B, A
+    JA error
     SUB A, B
     JMP print 
 
@@ -30,13 +33,14 @@ mult:
     JE print
 mult_loop:
     ADD A, D
+    JC error
     DEC B
     JNZ mult_loop
     JMP print
 
 div:
     CMP B, 0
-    JE error_div
+    JE error
     MOV D, 0
 div_loop:
     CMP A, B
@@ -48,7 +52,7 @@ end_div:
     MOV A, D 
     JMP print
 
-error_div:
+error:
     MOV D, 232
     MOV A, 'E'
     MOV [D], A
